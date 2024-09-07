@@ -16,13 +16,8 @@ namespace apirecipe
                 MapperConfiguration configuration = new MapperConfiguration(cfg =>
                 {
                     cfg.CreateMap<Authentication, DtoAuthentication>().ReverseMap();
-
-                    cfg.CreateMap<User, DtoUser>()
-                        .ForMember(dest => dest.authetication, opt => opt.MapFrom(src => src.ChildAthentication))
-                        .ReverseMap();
-
-                    cfg.CreateMap<DtoUser, User>()
-                        .ForMember(dest => dest.ChildAthentication, opt => opt.MapFrom(src => src.authetication));
+                    
+                    cfg.CreateMap<User, DtoUser>().ReverseMap();
                 });
 
                 mapper = configuration.CreateMapper();

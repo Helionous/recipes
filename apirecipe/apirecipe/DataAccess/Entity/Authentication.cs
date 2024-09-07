@@ -12,7 +12,5 @@ namespace apirecipe.DataAccess.Entity
         public string password { get; set; }
         public Role role { get; set; }
         public bool status { get; set; }
-        
-        public User ParentUser { get; set; }
     }
 }

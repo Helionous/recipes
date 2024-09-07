@@ -1,5 +1,7 @@
 using apirecipe.DataAccess.Entity;
 using apirecipe.Helper;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 
 namespace apirecipe.DataAccess.Connection
@@ -18,6 +20,8 @@ namespace apirecipe.DataAccess.Connection
                 MongoClient client = new MongoClient(settings);
                 MongoUrl uri = new MongoUrl(connectionString);
                 _database = client.GetDatabase(uri.DatabaseName);
+                
+                ApplyConventions();
             }
             catch (Exception ex)
             {
@@ -25,21 +29,21 @@ namespace apirecipe.DataAccess.Connection
                 throw;
             }
         }
-        
-        public IMongoCollection<Authentication> Authentications
-        {
-            get { return _database.GetCollection<Authentication>("authentications"); }
-        }
 
-        public IMongoCollection<User> Users
+        public IMongoCollection<Authentication> Authentications => _database.GetCollection<Authentication>("authentications");
+        public IMongoCollection<User> Users => _database.GetCollection<User>("users");
+        
+        private void ApplyConventions()
         {
-            get { return _database.GetCollection<User>("users"); }
+            var conventionPack = new ConventionPack
+            {
+                new EnumRepresentationConvention(BsonType.String)
+            };
+            ConventionRegistry.Register("EnumStringConvention", conventionPack, t => true);
         }
         
         public void Dispose()
         {
-            // No resources to dispose in MongoDB client
-            // The method can be left empty or removed if not needed
         }
     }
 }

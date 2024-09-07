@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using apirecipe.DataAccess.Generic;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace apirecipe.DataAccess.Entity
 {
@@ -12,7 +13,5 @@ namespace apirecipe.DataAccess.Entity
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string email { get; set; }
-        
-        public Authentication ChildAthentication { get; set; }
     }
 }

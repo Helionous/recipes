@@ -25,7 +25,6 @@ namespace apirecipe.DataAccess.Query
             using DataBaseContext dbc = new();
             Authentication authentication = dbc.Authentications.Find(a => a.username == username).FirstOrDefault();
             User user = dbc.Users.Find(u => u.idAuthentication == authentication.id.ToString()).FirstOrDefault();
-            
             DtoUser dtoUser = AutoMapper.mapper.Map<DtoUser>(user);
             dtoUser.authetication = AutoMapper.mapper.Map<DtoAuthentication>(authentication);
             return dtoUser;

@@ -32,6 +32,13 @@ namespace apirecipe.DataAccess.Connection
 
         public IMongoCollection<Authentication> Authentications => _database.GetCollection<Authentication>("authentications");
         public IMongoCollection<User> Users => _database.GetCollection<User>("users");
+        public IMongoCollection<Like> Likes => _database.GetCollection<Like>("likes");
+        public IMongoCollection<Recipe> Recipes => _database.GetCollection<Recipe>("recipes");
+        public IMongoCollection<Category> Categories => _database.GetCollection<Category>("categories");
+        public IMongoCollection<Rating> Ratings => _database.GetCollection<Rating>("ratings");
+        public IMongoCollection<Image> Images => _database.GetCollection<Image>("images");
+        public IMongoCollection<Video> Videos => _database.GetCollection<Video>("videos");
+        public IMongoCollection<New> News => _database.GetCollection<New>("news");
         
         private void ApplyConventions()
         {

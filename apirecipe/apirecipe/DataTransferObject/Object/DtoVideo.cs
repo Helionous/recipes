@@ -6,7 +6,7 @@ namespace apirecipe.DataTransferObject.Object
     public class DtoVideo : DtoDateGeneric
     {
         public Guid id { get; set; }
-        public Guid idRecipe { get; set; }
+        public string idRecipe { get; set; }
         [Required]
         [StringLength(255, MinimumLength = 10, ErrorMessage = "El título debe tener minimo 4 a más caracteres.")]
         public string title { get; set; }

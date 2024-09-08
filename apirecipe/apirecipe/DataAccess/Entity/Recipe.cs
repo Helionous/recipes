@@ -9,7 +9,7 @@ namespace apirecipe.DataAccess.Entity
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Guid id { get; set; }
-        public Guid idCategory { get; set; }
+        public string idCategory { get; set; }
         public string title { get; set; }
         public string description { get; set; }
         public string instruction { get; set; }
@@ -18,7 +18,7 @@ namespace apirecipe.DataAccess.Entity
         public string cooking { get; set; }
         public string estimated { get; set; }
         public Difficulty difficulty { get; set; }
-        public Guid? createdBy { get; set; }
-        public Guid? updatedBy { get; set; }
+        public string? createdBy { get; set; }
+        public string? updatedBy { get; set; }
     }
 }

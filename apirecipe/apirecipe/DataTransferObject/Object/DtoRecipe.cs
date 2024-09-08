@@ -8,7 +8,7 @@ namespace apirecipe.DataTransferObject.Object
     {
         public Guid id { get; set; }
 
-        public Guid idCategory { get; set; }
+        public string idCategory { get; set; }
 
         [Required]
         [StringLength(255, MinimumLength = 10, ErrorMessage = "El título debe tener entre 10 y 255 caracteres.")]
@@ -44,8 +44,8 @@ namespace apirecipe.DataTransferObject.Object
         [EnumDataType(typeof(Difficulty), ErrorMessage = "La dificultad proporcionado no es válido.")]
         public Difficulty difficulty { get; set; }
 
-        public Guid? createdBy { get; set; }
-        public Guid? updatedBy { get; set; }
+        public string? createdBy { get; set; }
+        public string? updatedBy { get; set; }
 
         #region childs
 

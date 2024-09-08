@@ -6,7 +6,7 @@ namespace apirecipe.DataTransferObject.Object
     public class DtoImage : DtoDateGeneric
     {
         public Guid id { get; set; }
-        public Guid idRecipe { get; set; }
+        public string idRecipe { get; set; }
         [Required]
         [Url(ErrorMessage = "La URL proporcionada no es válida.")]
 

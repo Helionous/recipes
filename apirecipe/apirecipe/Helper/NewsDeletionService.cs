@@ -1,15 +1,17 @@
+using apirecipe.DataAccess.Query;
+using apirecipe.DataTransferObject.Object;
+
 namespace apirecipe.Helper
 {
-    public class NewsDeletionService
+    public class NewsDeletionService : BackgroundService
     {
-        
-        //private readonly QNew _qNew;
+        private readonly QNew _qNew;
 
         public NewsDeletionService()
         {
-            //_qNew = new QNew();
+            _qNew = new QNew();
         }
-        /*
+        
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
@@ -27,7 +29,7 @@ namespace apirecipe.Helper
                             }
                         }
                     }
-                    await Task.Delay(TimeSpan.FromMinutes(1), stoppingToken);
+                    await Task.Delay(TimeSpan.FromHours(1), stoppingToken);
                 }
                 catch (Exception e)
                 {
@@ -40,6 +42,6 @@ namespace apirecipe.Helper
         {
             Console.WriteLine("Error de servicio de eliminación de noticias");
             return base.StopAsync(cancellationToken);
-        }*/
+        }
     }
 }

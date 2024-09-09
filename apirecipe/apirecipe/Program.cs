@@ -24,7 +24,7 @@ namespace apirecipe
             #endregion
             
             #region NewsVerificationService
-            //builder.Services.AddHostedService<NewsDeletionService>();
+            builder.Services.AddHostedService<NewsDeletionService>();
             #endregion
             
             builder.Services.AddEndpointsApiExplorer();

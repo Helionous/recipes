@@ -87,18 +87,18 @@ namespace apirecipe.DataAccess.Query
         public List<DtoRecipe> TopThreeMostLiked()
         {
             using DataBaseContext dbc = new();
-            List<string> topRatedRecipeIds = dbc.Ratings
+            List<Guid> topRatedRecipeIds = dbc.Ratings
                 .Find(FilterDefinition<Rating>.Empty)
                 .SortByDescending(rt => rt.numberLike)
                 .Limit(3)
                 .ToList()
-                .Select(rt => rt.idRecipe)
+                .Select(rt => Guid.Parse(rt.idRecipe.ToString()))
                 .ToList();
             
             List<Recipe> topRecipes = dbc.Recipes
-                .Find(r => topRatedRecipeIds.Contains(r.id.ToString()))
+                .Find(r => topRatedRecipeIds.Contains(r.id))
                 .ToList()
-                .OrderBy(r => topRatedRecipeIds.IndexOf(r.id.ToString()))
+                .OrderBy(r => topRatedRecipeIds.IndexOf(r.id))
                 .ToList();
             
             List<DtoRecipe> listDtoRecipes = AutoMapper.mapper.Map<List<DtoRecipe>>(topRecipes);
@@ -241,7 +241,7 @@ namespace apirecipe.DataAccess.Query
                 List<Like> likes = dbc.Likes.Find(r => r.idRecipe == recipe.id.ToString()).ToList();
                 if (likes.Count > 0)
                 { 
-                    dbc.Likes.DeleteMany(l => l.idUser == recipe.id);
+                    dbc.Likes.DeleteMany(l => l.idUser == recipe.id.ToString());
                 }
                 dbc.Recipes.DeleteOne(r => r.id == id);
                 return 1;
@@ -258,7 +258,7 @@ namespace apirecipe.DataAccess.Query
         public List<DtoRecipe> RecipesYouLiked(Guid id)
         {
             using DataBaseContext dbc = new();
-            List<Like> likes = dbc.Likes.Find(l => l.idUser == id && l.status).ToList();
+            List<Like> likes = dbc.Likes.Find(l => l.idUser == id.ToString() && l.status).ToList();
             List<DtoRecipe> dtoRecipes = new();
             
             foreach (Like like in likes)
